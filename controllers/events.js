@@ -74,11 +74,35 @@ const actualizarEvento = async (req,res=response) => {
     
 }
 
-const eliminarEvento = (req,res=response) => {
-    res.json({
-        ok:true,
-        msg:'Todo Bien'
-    })
+const eliminarEvento = async (req,res=response) => {
+    const eventoId = req.params.id
+
+    try {
+        
+         // Consultar que el id sea valido
+         const evento = await Evento.findById(eventoId)
+         if(!evento){
+             return res.status(404).json({
+                 ok:false,
+                 msg:'El usuario no existe por ese ID'
+             })
+         }
+
+         await Evento.findByIdAndDelete(eventoId)
+
+         res.json({
+            ok:true,
+            msg:'Usuario eliminado con exito!'
+         })
+
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            ok:false,
+            msg:'Ha ocurrido un error inesperado, hable con un administrador'
+        })
+
+    }
 }
 
 module.exports = {
