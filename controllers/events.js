@@ -33,11 +33,45 @@ const crearEvento = async (req,res=response) => {
     }
 }
 
-const actualizarEvento = (req,res=response) => {
-    res.json({
-        ok:true,
-        msg:'Todo Bien'
-    })
+const actualizarEvento = async (req,res=response) => {
+
+    // Extraer id de la url
+    const eventoId = req.params.id
+    
+    try {
+        // Consultar que el id sea valido
+        const evento = await Evento.findById(eventoId)
+        if(!evento){
+            return res.status(404).json({
+                ok:false,
+                msg:'El usuario no existe por ese ID'
+            })
+        }
+
+        // El nuevo evento
+        const nuevoEvento = {
+            ...req.body
+        }
+
+        // Actualziar el evento
+        const eventoActualizado = await Evento.findByIdAndUpdate(eventoId, nuevoEvento, {new: true})
+
+        // Respuesta si todo pasa
+        res.json({
+            ok:true,
+            evento: eventoActualizado
+        })
+
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            ok:false,
+            msg: "Ha ocurrido un error!"
+        })
+    }
+
+
+    
 }
 
 const eliminarEvento = (req,res=response) => {
