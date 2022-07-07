@@ -1,9 +1,16 @@
 const express = require('express')
 // Libreria para poder utilizar las variables de entorno (npm i dotenv)
 require('dotenv').config()
+const {dbConection} = require('./DB/config')
 
 // Crear servidor de express
 const app = express()
+
+// Base de datos
+dbConection()
+
+// Lectura y parceo del body
+app.use(express.json())
 
 // Directorio publico
 app.use(express.static('public'))
