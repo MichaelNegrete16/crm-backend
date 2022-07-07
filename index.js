@@ -1,7 +1,7 @@
 const express = require('express')
 // Libreria para poder utilizar las variables de entorno (npm i dotenv)
 require('dotenv').config()
-const {dbConection} = require('./DB/config')
+const {dbConection} = require('./DB/config')  
 
 // Crear servidor de express
 const app = express()
@@ -16,12 +16,7 @@ app.use(express.json())
 app.use(express.static('public'))
 
 // Rutas de la aplicacion para dar respuestas a la ruta ('/')
-// app.get('/', (req,res) => {
-//     console.log('Se requiere el /')
-//     res.json({
-//         ok:true
-//     })
-// })
+app.use('/api/events', require('./routes/events'))
 
 // Escuchar peticiones en el puerto 4000
 app.listen(process.env.PORT, () => {
