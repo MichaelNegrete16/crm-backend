@@ -2,11 +2,11 @@ const {Schema,model} = require('mongoose')
 
 const EventoSchema = Schema({
 
-    nombre:{
+    name:{
         type: String,
         require: true
     },
-    apellido:{
+    lastName:{
         type: String,
         require: true
     },

@@ -3,8 +3,14 @@ const express = require('express')
 require('dotenv').config()
 const {dbConection} = require('./DB/config')  
 
+// Configurar Cors
+const cors = require('cors')
+
 // Crear servidor de express
 const app = express()
+
+// Configuracion de cors (llamado)
+app.use(cors())
 
 // Base de datos
 dbConection()
