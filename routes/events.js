@@ -13,6 +13,7 @@ router.get('/',getEventos)
 // Crear evento
 router.post('/', [
     check('name','El nombre es obligatorio').not().isEmpty(),
+    check('telefono','El telefono es obligatorio').not().isEmpty(),
     check('lastName','El apellido es obligatorio').not().isEmpty(),
     check('email','El correo es obligatorio o ya existe').isEmail(),
     validarCampos
@@ -22,6 +23,7 @@ router.post('/', [
 router.put('/:id',[
     check('name','El nombre es obligatorio').not().isEmpty(),
     check('lastName','El apellido es obligatorio').not().isEmpty(),
+    check('telefono','El telefono es obligatorio').not().isEmpty(),
     check('email','El correo es obligatorio o ya existe').isEmail(),
     validarCampos
 ] ,actualizarEvento)

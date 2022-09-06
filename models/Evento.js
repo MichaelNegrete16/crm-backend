@@ -17,6 +17,13 @@ const EventoSchema = Schema({
     },
     direccion:{
         type: String
+    },
+    telefono: {
+        type: Number,
+        require: true
+    },
+    tarea: {
+        type: String
     }
 
 })
