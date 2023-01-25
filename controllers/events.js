@@ -64,6 +64,7 @@ const actualizarEvento = async (req,res=response) => {
 
     } catch (error) {
         console.log(error)
+        console.log(req.params)
         res.status(500).json({
             ok:false,
             msg: "Ha ocurrido un error!"
